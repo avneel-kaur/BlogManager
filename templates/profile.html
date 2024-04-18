@@ -1,0 +1,60 @@
+{%extends "base.html"%}
+		{%block content%}
+		<h1> Hii {{ name }} </h1>
+
+		
+
+		<div class="card mb-3" style="max-width:90%;">
+  			<div class="row g-0">
+    			<div class="col-md-4">
+    				{% set img_name = name|string() + '.png' %}
+      				<img src="{{ url_for('static', filename = img_name) }}" class="img-fluid rounded-start" alt="...">
+    			</div>
+    			<div class="col-md-8" style="display: flex;">
+      				  <div class="card-body">
+        				<h5 class="card-title">No of Posts</h5>
+				        <span>{{ no_of_blogs }}</span>
+				      </div>
+				      <div class="card-body">
+	        				<a href="{{ url_for('followers') }}"><h5 class="card-title">Followers</h5></a>
+					        <span>{{ no_of_follower }}</span>
+				      </div>
+				      <div class="card-body">
+	        				<a href="{{ url_for('following') }}"><h5 class="card-title">Following</h5></a>
+					        <span>{{ no_of_follow }}</span>
+				      </div>
+			    </div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+		<div class = "container ">
+			<div class="row row-cols-3">
+				{% for post in posts|reverse %}
+				{% set name = post.id|string() + '.png' %}
+				<div class="card col" style="width: 18rem;">
+	  				<img src="{{ url_for('static', filename = name) }}" class="card-img-top" alt="...">
+	  				<div class="card-body">
+		  				<span>{{ post.title }}</span>
+		  				<br>
+		    			<p class="card-text">{{ post.body }}</p>
+		    			<br>
+		    			<span>{{ post.user }}</span>
+		    			<br>
+		    			{% set id = post.id %}
+		    			<button><a href="{{ url_for('edit', id = id) }}">Edit</a></button>
+		    			<button><a href="{{ url_for('delete', id = id) }}">Delete</a></button>
+	  				</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+
+		{%endblock%}

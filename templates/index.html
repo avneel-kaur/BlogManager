@@ -1,0 +1,20 @@
+{%extends "base.html"%}
+		{%block content%}
+		
+		<form method="post" class="container" style="margin-top: 20px;">
+
+			<div class="mb-3">
+			{{form.hidden_tag()}}
+				{{form.username.label(class="form-label")}}
+				{{form.username(class="form-control")}}
+				
+				{{form.upassword.label(class="form-label")}}
+				{{form.upassword(class="form-control")}}
+				<br>
+				{{form.sub_button(class="btn btn-primary")}}
+			</div>
+		</form>
+
+
+
+		{%endblock%}

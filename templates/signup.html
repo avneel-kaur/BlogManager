@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+		{%block content%}
+		<h1> Sign Up Please </h1>
+		
+		<form method="post" class="container" enctype="multipart/form-data">
+
+			<div class="mb-3">
+			{{form.hidden_tag()}}
+				{{form.username.label(class="form-label")}}
+				{{form.username(class="form-control")}}
+    			<br>
+				{{form.upassword.label(class="form-label")}}
+				{{form.upassword(class="form-control")}}
+				<br>
+    			{{ form.image.label( class="form-label" ) }}
+    			{{ form.image( class="form-control") }}
+    			<br>
+				{{form.sub_button(class="btn btn-primary")}}
+			</div>
+		</form>
+
+
+
+		{%endblock%}

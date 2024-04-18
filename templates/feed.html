@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+		{%block content%}
+
+		{% if posts|length > 0 %}
+		
+		<div class = "container ">
+			<div class="row row-cols-3">
+				{% for post in posts|reverse %}
+				{% set name = post.id|string() + '.png' %}
+				<div class="card col m-3" style="width: 30%;">
+	  				<img src="{{ url_for('static', filename = name) }}" class="card-img-top" alt="...">
+	  				<div class="card-body">
+		  				<span>{{ post.title }}</span>
+		  				<br>
+		    			<p class="card-text">{{ post.body }}</p>
+		    			<br>
+		    			{% set user = post.user %}
+		    			<a href="{{ url_for('other', name = user) }}"><span>{{ user }}</span></a>
+	  				</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		
+		{% else %}
+		
+		<p>There are no posts in your feed.</p>
+		<br>
+		<p>Connect with other users to see what they are posting</p>
+
+		{% endif %}
+
+		{%endblock%}

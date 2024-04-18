@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+{%block content%}
+
+
+{% if followers|length > 0 %}
+		<table class="table table-striped table-hover">
+		 <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Users</th>
+		      <th scope="col">Status</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% set uname = current_user.username %}
+		  	{% for follower in followers %}
+		    <tr>
+		      <th scope="row">{{ loop.index }}</th>
+		      <td>{% set user = follower.following %}
+		    	<a href="{{ url_for('other', name = user) }}"><span>{{ user }}</span></a></td>
+
+
+		      {% set fname = follower.following %}
+		      <td style="width: 90px;"><a href="{{ url_for('unfollow', name1 = uname, name2 = fname) }}">unfollow</a></td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+		{% endif %}
+
+
+{%endblock%}
